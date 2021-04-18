@@ -4,7 +4,7 @@
 */
 function show_404(){
 	header("HTTP/1.0 404 Not Found");
-	require BASEPATH.'/application/views/errors/404.php';
+	require APPPATH.'/views/errors/404.php';
 }
 /*
 | Load models in the system dir
@@ -22,7 +22,7 @@ function load_library($library){
 | Load views for HTML
 */
 function load_view($view, $data = []){
-	$view = BASEPATH."/application/views/$view.php";
+	$view = APPPATH."/views/$view.php";
 	if(!file_exists($view)) return show_404();
 	if(!empty($data) > 0) extract($data);
 	require $view;
@@ -31,7 +31,7 @@ function load_view($view, $data = []){
 | Load the model
 */
 function load_model($model){
-	require BASEPATH."/application/models/$model.php";
+	require APPPATH."/models/$model.php";
 }
 /*
 | Load the controller

@@ -1,11 +1,12 @@
 <?php
 $dir = dirname(__FILE__);
 
-define('BASEPATH', "$dir/../");
-define('APPPATH', BASEPATH . 'application/');
-define('SYSPATH', BASEPATH . 'system/');
+define('BASEPATH', "$dir/..");
+define('APPPATH', BASEPATH . '/app');
+define('SYSPATH', BASEPATH . '/system');
+define('FCPATH', $dir);
 
-require SYSPATH . 'core/bootstrap.php';
+require SYSPATH . '/core/bootstrap.php';
 
 if(isset($_SESSION['fv'])){
 	unset($_SESSION['fv']);
