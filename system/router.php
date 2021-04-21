@@ -14,9 +14,9 @@ function _router(array $routes, array $config) {
 			
 			_run__autoload();
 			_load__controller($route['controller']);
-			$loader = call_user_func_array($route['action'], $params);
+			_route__checkAction($action);
 			
-			if(!$loader) throw new ErrorException("Method is not found");
+			call_user_func_array($route['action'], $params);
 		}
 	}
 	
@@ -34,12 +34,14 @@ function _router(array $routes, array $config) {
 			if(count($exp) > 2) $params = array_slice($exp, 2);
 			
 			_load__controller($controller);
-			$loader = call_user_func_array($action, $params);
-			if(!$loader) throw new ErrorException("Method is not found");
+			_route__checkAction($action);
+			
+			call_user_func_array($action, $params);
 		} else {
 			_load__controller($controller);
-			$loader = call_user_func_array($action, $params);
-			if(!$loader) throw new ErrorException("Method is not found");
+			_route__checkAction($action);
+			
+			call_user_func_array($action, $params);
 		}
 	} else {
 		show_404();

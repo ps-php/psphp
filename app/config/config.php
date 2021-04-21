@@ -2,6 +2,7 @@
 /*
 | Application Config
 */
+$config['app_environment'] = 'production';
 $config['base_url'] = "http://localhost/psphp/";
 $config['helper_suffix'] = '.helper';
 /*

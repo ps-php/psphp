@@ -8,7 +8,19 @@ define('FCPATH', $dir);
 
 $app = require SYSPATH . '/bootstrap.php';
 
-_router($app['routes'], $app['config']);
+_display__errors();
+
+try {
+	_router($app['routes'], $app['config']);
+} catch(Exception $e) {
+	if(environment() == 'production') show_whoops();
+	require SYSPATH . '/errors/expected.php';
+	die;
+} catch(Throwable $t) {
+	if(environment() == 'production') show_whoops();
+	require SYSPATH . '/errors/unexpected.php';
+	die;
+}
 
 if(isset($_SESSION['fv'])){
 	unset($_SESSION['fv']);

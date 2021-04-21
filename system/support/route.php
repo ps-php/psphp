@@ -17,6 +17,18 @@ function _route__checkMethod(string $route) {
 	];
 }
 
+function _route__checkAction(string $action) {
+	if(!is_callable($action)) {
+		if(environment() != 'production') {
+			throw new Exception('Controller method doesn\'t exist');
+		}
+		
+		show_404();
+	}
+	
+	return true;
+}
+
 function _route__activateRegex(string $route) {
 	$replacement = [
 		'{}' => '([^/]+)',
