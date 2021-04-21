@@ -1,14 +1,15 @@
 <?php
-mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 class DBConfig{
 	static function conn(){
-		return mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		return mysqli_connect(config('db_host'), config('db_username'), config('db_password'), config('db_name'));
 	}
 }
 /*
 | Get all query
 */
-function db_get_all($table, $fields = null, $limit = null, $offset = null){
+function db__getAll($table, $fields = null, $limit = null, $offset = null){
 	$db_conn = DBConfig::conn();
 	$rows= [];
 	$query = "SELECT ";
@@ -26,7 +27,7 @@ function db_get_all($table, $fields = null, $limit = null, $offset = null){
 /*
 | Select where query
 */
-function db_get_where($table, $data = [], $fields = null, $limit = null, $offset = null){
+function db__getWhere($table, $data = [], $fields = null, $limit = null, $offset = null){
 	$db_conn = DBConfig::conn();
 	$rows = [];
 	$query = "SELECT ";
@@ -48,7 +49,7 @@ function db_get_where($table, $data = [], $fields = null, $limit = null, $offset
 /*
 | Like Query
 */
-function db_get_like($table, $data = [], $fields = null, $limit = null, $offset = null){
+function db__getLike($table, $data = [], $fields = null, $limit = null, $offset = null){
 	$db_conn = DBConfig::conn();
 	$rows = [];
 	$query = "SELECT ";
@@ -71,7 +72,7 @@ function db_get_like($table, $data = [], $fields = null, $limit = null, $offset 
 /*
 | Delete Query
 */
-function db_delete($table, $data = []){
+function db__delete($table, $data = []){
 	$db_conn = DBConfig::conn();
 	$query = "DELETE FROM `$table`";
 	if(count($data) > 0){
@@ -87,7 +88,7 @@ function db_delete($table, $data = []){
 /*
 | Insert query
 */
-function db_insert($table, $data){
+function db__insert($table, $data){
 	$db_conn = DBConfig::conn();
 	$fields = "(";
 	$values = "VALUES (";
@@ -105,7 +106,7 @@ function db_insert($table, $data){
 /*
 | Get table fields list
 */
-function db_list_fields($table){
+function db__listFields($table){
 	$db_conn = DBConfig::conn();
 	$fields = [];
 	$query = "SHOW COLUMNS FROM `$table`";
