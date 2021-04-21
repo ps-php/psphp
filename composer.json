@@ -1,6 +1,6 @@
 {
     "name": "psphp/psphp",
-    "description": "Procedural sSlim - PHP FFramework",
+    "description": "Procedural Slim - PHP FFramework",
     "type": "project",
     "license": "MIT",
     "authors": [
