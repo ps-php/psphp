@@ -12,6 +12,7 @@ function _router(array $routes, array $config) {
 			if(!_route__isMethod($route['method'])) show_404();
 			$params = _route__parseParams($route, $match);
 			
+			_run__autoload();
 			_load__controller($route['controller']);
 			$loader = call_user_func_array($route['action'], $params);
 			
@@ -25,6 +26,7 @@ function _router(array $routes, array $config) {
 		$params = [];
 		$exp = explode('/', rtrim($uriPaths, '/'));
 		array_shift($exp);
+		_run__autoload();
 		
 		if(count($exp) > 0) {
 			$controller = $exp[0];

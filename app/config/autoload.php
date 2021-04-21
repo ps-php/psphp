@@ -3,9 +3,9 @@
 | List of helpers
 | url, session
 */
-$autoload['helper'] = [];
+$autoload['helpers'] = [];
 /*
 | List of Libraries
 | database, input, form
 */
-$autoload['library'] = [];
+$autoload['libraries'] = [];

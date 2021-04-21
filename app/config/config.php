@@ -3,6 +3,7 @@
 | Application Config
 */
 $config['base_url'] = "http://localhost/psphp/";
+$config['helper_suffix'] = '.helper';
 /*
 | Database Connection
 | Only Support for MySQL through mysqli driver
