@@ -3,6 +3,7 @@
 | Application Config
 */
 $config['app_environment'] = 'development';
+$config['app_name'] = 'Ps-PHP';
 $config['base_url'] = "http://localhost/psphp/";
 $config['helper_suffix'] = '.helper';
 /*

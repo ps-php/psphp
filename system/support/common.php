@@ -1,9 +1,18 @@
 <?php
 
+function _env(string $name) {
+	if(file_exists($path = BASEPATH . '/env.php')) {
+		$env = require $path;
+		return $env[strtoupper($name)] ?? null;
+	}
+	
+	return null;
+}
+
 function config(string $name = null) {
 	global $config;
 	
-	if(!is_null($name)) return $config[$name] ?? null;
+	if(!is_null($name)) return _env($name) ?? $config[$name] ?? null;
 	return $config;
 }
 
