@@ -9,6 +9,6 @@
             "email": "ahmadirsyadulibad7@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {}
 }
