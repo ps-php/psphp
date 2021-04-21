@@ -1,0 +1,14 @@
+{
+    "name": "psphp/psphp",
+    "description": "Procedural sSlim - PHP FFramework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "irsyadulibad",
+            "email": "ahmadirsyadulibad7@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
