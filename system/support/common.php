@@ -83,6 +83,14 @@ function _load__controller(string $controller) {
 	}
 }
 
+function _load__middleware(string $middleware) {
+	if(file_exists($path = APPPATH . "/middleware/$middleware.php")) {
+		require $path;
+	} else {
+		throw new Exception("Middleware $middleware doesn't exist");
+	}
+}
+
 function _run__autoload() {
 	require APPPATH . '/config/autoload.php';
 	

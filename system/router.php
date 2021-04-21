@@ -2,15 +2,21 @@
 
 require SYSPATH . '/support/route.php';
 
-function _router(array $routes, array $config) {
+function _router(array $routes, array $config, array $middlewares) {
+	foreach($middlewares['before'] as $middleware) {
+		_load__middleware($middleware);
+	}
+	
 	$autoRoute = $config['auto_route'] ?? false;
 	$uriPaths = $_SERVER['PATH_INFO'] ?? '/';
 	$routes = _route__parser($routes);
+	$isLoaded = false;
 	
 	foreach($routes as $key => $route) {
 		if(preg_match("#^$key$#", $uriPaths, $match)) {
 			if(!_route__isMethod($route['method'])) show_404();
 			$params = _route__parseParams($route, $match);
+			$isLoaded = true;
 			
 			_run__autoload();
 			_load__controller($route['controller']);
@@ -20,7 +26,7 @@ function _router(array $routes, array $config) {
 		}
 	}
 	
-	if($autoRoute) {
+	if($autoRoute && !$isLoaded) {
 		$controller = $config['default_controller'];
 		$action = 'index';
 		$params = [];
@@ -45,5 +51,9 @@ function _router(array $routes, array $config) {
 		}
 	} else {
 		show_404();
+	}
+	
+	foreach($middlewares['after'] as $middleware) {
+		_load__middleware($middleware);
 	}
 }
