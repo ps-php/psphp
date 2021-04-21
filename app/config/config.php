@@ -3,7 +3,6 @@
 | Application Config
 */
 $config['base_url'] = "http://localhost/psphp/";
-$config['default_controller'] = 'welcome';
 /*
 | Database Connection
 | Only Support for MySQL through mysqli driver

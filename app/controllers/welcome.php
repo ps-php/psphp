@@ -1,4 +1,5 @@
 <?php
-function index(){
-	load_view('welcome');
+
+function index() {
+	view('welcome');
 }

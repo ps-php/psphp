@@ -6,7 +6,9 @@ define('APPPATH', BASEPATH . '/app');
 define('SYSPATH', BASEPATH . '/system');
 define('FCPATH', $dir);
 
-require SYSPATH . '/core/bootstrap.php';
+$app = require SYSPATH . '/bootstrap.php';
+
+_router($app['routes'], $app['config']);
 
 if(isset($_SESSION['fv'])){
 	unset($_SESSION['fv']);
