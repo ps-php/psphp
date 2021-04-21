@@ -1,20 +1,18 @@
 <?php
-function base_url($url = null){
-	global $base_url;
-	return $base_url.$url;
+function base_url($url = ''){
+	return config('base_url').$url;
 }
-function uri($segment = null){
+
+function uri_segment(int $segment = null){
 	$url = $_SERVER['PATH_INFO'];
 	$url = explode('/', substr($url, 1));
-	if(!is_null($segment)){
-		return isset($url[$segment]) ? $url[$segment] : null;
-	}else{
-		return $url;
-	}
+	
+	return $url[$segment] ?? null;
 }
-function redirect($path){
-	global $base_url;
-	$url = $base_url.$path;
+
+function redirect(string $path){
+	$baseUrl = config('base_url');
+	$url = $baseUrl.$path;
 	header("Location: $url");
 	exit();
 }
