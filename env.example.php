@@ -1,6 +1,7 @@
 <?php
 
 $env = [
+	"BASE_URL" => "http://localhost:8082",
 	"APP_ENVIRONMENT" => "development",
 	"APP_NAME" => "Ps-PHP",
 	"DB_HOST" => "127.0.0.1",
