@@ -43,6 +43,26 @@ function show_whoops() {
 	die;
 }
 
+function show_419() {
+	header("HTTP/1.0 419 Expired");
+	if(file_exists($path = APPPATH . '/views/errors/419.php')) {
+		require $path;
+	} else {
+		require SYSPATH . '/errors/419.php';
+	}
+	die;
+}
+
+function show_403() {
+	header("HTTP/1.0 403 Forbidden");
+	if(file_exists($path = APPPATH . '/views/errors/403.php')) {
+		require $path;
+	} else {
+		require SYSPATH . '/errors/403.php';
+	}
+	die;
+}
+
 function view(string $view, array $params = []) {
 	extract($params);
 	if(file_exists($path = APPPATH . "/views/$view.php")) {

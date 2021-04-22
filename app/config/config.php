@@ -7,6 +7,12 @@ $config['app_name'] = 'Ps-PHP';
 $config['base_url'] = "http://localhost/psphp/";
 $config['helper_suffix'] = '.helper';
 /*
+| CSRF Token config
+*/
+$config['csrf_token_name'] = 'psphp_csrf';
+$config['csrf_token_expires'] = 3600;
+$config['csrf_regenerate'] = true;
+/*
 | Database Connection
 | Only Support for MySQL through mysqli driver
 */
