@@ -20,7 +20,7 @@ function _router(array $routes, array $config, array $middlewares) {
 			
 			_run__autoload();
 			_load__controller($route['controller']);
-			_route__checkAction($action);
+			_route__checkAction($route['action']);
 			
 			call_user_func_array($route['action'], $params);
 		}
