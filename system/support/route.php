@@ -83,10 +83,25 @@ function _route__parser(String $route, String $call, array $options) {
 
 function route__get(String $route, String $call, array $options = []) {
 	$options['method'] = 'GET';
+	$group = $GLOBALS['rGroup']['route'] ?? '';
+	$route = $group.$route;
+
 	return _route__parser($route, $call, $options);
 }
 
 function route__post(String $route, String $call, array $options = []) {
 	$options['method'] = 'POST';
+	$group = $GLOBALS['rGroup']['route'] ?? '';
+	$route = $group.$route;
+
 	return _route__parser($route, $call, $options);
+}
+
+function route__group(String $route, Closure $callback) {
+	$GLOBALS['rGroup'] = [
+		'route' => $route
+	];
+
+	$callback();
+	unset($GLOBALS['rGroup']);
 }
