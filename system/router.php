@@ -1,6 +1,9 @@
 <?php
 
 function _router(array $routes, array $config, array $middlewares) {
+	if($config['composer_autoload'])
+		require BASEPATH . '/vendor/autoload.php';
+
 	foreach($middlewares['before'] as $middleware) {
 		_load__middleware($middleware);
 	}
