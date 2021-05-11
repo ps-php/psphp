@@ -1,0 +1,18 @@
+<?php
+
+if(php_sapi_name() != 'cli') {
+    die('The cli tool is only supported for php-cli');
+}
+
+$dir = dirname(__FILE__);
+
+// Change this constants if you move the app or system directory
+define('BASEPATH', $dir);
+define('FCPATH', BASEPATH . '/public');
+define('APPPATH', BASEPATH . '/app');
+define('SYSPATH', BASEPATH . '/system');
+
+define('SKUYED', true);
+
+require SYSPATH . '/cli.php';
+_handle_CLI();
