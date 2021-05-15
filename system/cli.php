@@ -19,11 +19,12 @@ function _handle_CLI() {
     $cmds = _supported__commands();
 
     if(!array_key_exists($args['command'][0], $cmds)) {
-        die("Command doesn't supported \n");
+        die(colorLog("Command doesn't supported \n", 'e'));
     }
 
     $command = '_cli__' . $args['command'][0] . 'Command';
-    echo "\n Ps-PHP Command Line Tool \n\n";
+    $time = date('d-m-Y H:i:s');
+    echo colorLog("\n Ps-PHP Command Line Tool - Server Time: $time \n\n", 'i');
     _cli__callCommand($command, $args['command'][1], $args['param']);
     echo "\n\n";
 }

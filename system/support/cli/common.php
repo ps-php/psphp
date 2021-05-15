@@ -1,4 +1,26 @@
 <?php
+// Colorize the terminal
+function colorLog(string $str, string $type) {
+    switch ($type) {
+        case 'e': //error
+            $str = "\033[31m$str\033[0m";
+        break;
+        case 's': //success
+            $str = "\033[32m$str\033[0m";
+        break;
+        case 'w': //warning
+            $str = "\033[33m$str\033[0m";
+        break;  
+        case 'i': //info
+            $str = "\033[36m$str\033[0m";
+        break;      
+        default:
+            $str = $str;
+        break;
+    }
+
+    return $str;
+}
 
 function _cli__parseArguments() {
     $args = $_SERVER['argv'];
@@ -14,7 +36,7 @@ function _cli__parseArguments() {
 }
 
 function _cli_createFile(string $path, string $str) {
-    $create = fopen($path, "w") or die("Permission denied");
+    $create = fopen($path, "w") or die(colorLog("Permission denied", 'e'));
     fwrite($create, $str);
     fclose($create);
 
@@ -24,6 +46,6 @@ function _cli_createFile(string $path, string $str) {
 function _cli__callCommand(string $command, $type, $param) {
     require SYSPATH . '/support/cli/commands.php';
     
-    if(!is_callable($command)) die("Error: command not found\n");
+    if(!is_callable($command)) die(colorLog("Error: command not found\n", 'e'));
     return $command($type, $param);
 }
