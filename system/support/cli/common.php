@@ -13,6 +13,14 @@ function _cli__parseArguments() {
     ];
 }
 
+function _cli_createFile(string $path, string $str) {
+    $create = fopen($path, "w") or die("Permission denied");
+    fwrite($create, $str);
+    fclose($create);
+
+    return $path;
+}
+
 function _cli__callCommand(string $command, $type, $param) {
     require SYSPATH . '/support/cli/commands.php';
     
