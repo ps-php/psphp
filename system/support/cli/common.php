@@ -35,8 +35,15 @@ function _cli__parseArguments() {
     ];
 }
 
+function _cli__createDir(string $path) {
+    $exp = explode('/', $path);
+    array_pop($exp);
+    @mkdir(implode('/', $exp));
+}
+
 function _cli_createFile(string $path, string $str) {
-    $create = fopen($path, "w") or die(colorLog("Permission denied", 'e'));
+    _cli__createDir($path);
+    $create = fopen($path, "w") or die(colorLog("Permission denied\n", 'e'));
     fwrite($create, $str);
     fclose($create);
 
