@@ -63,6 +63,14 @@ function show_403() {
 	die;
 }
 
+function model(string $model) {
+	if(file_exists($path = APPPATH . "/models/$model.php")) {
+		require $path;
+	} else {
+		throw new Exception("Model $model is not found");
+	}
+}
+
 function view(string $view, array $params = []) {
 	extract($params);
 	if(file_exists($path = APPPATH . "/views/$view.php")) {
