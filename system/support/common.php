@@ -72,9 +72,22 @@ function model(string $model) {
 }
 
 function view(string $view, array $params = []) {
+	$GLOBALS['psview-data'] = $params;
 	extract($params);
+
 	if(file_exists($path = APPPATH . "/views/$view.php")) {
+		require SYSPATH . '/support/view.php';
 		require $path;
+
+		if($content = $GLOBALS['view']['extend'] ?? false) {
+			ob_get_clean();
+			$content = _view__cleanContent($content);
+			unset($GLOBALS['view']);
+
+			echo $content;
+		}
+
+		unset($GLOBALS['psview-data']);
 	} else {
 		throw new Exception("View $view is not found");
 	}
