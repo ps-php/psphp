@@ -26,6 +26,7 @@ function __extend($view, $data = []) {
         ob_start();
         extract($data);
         
+        $GLOBALS['view']['is_extended'] = true;
         require $path;
         $GLOBALS['view']['extend'] = ob_get_contents();
         ob_get_clean();
@@ -35,7 +36,7 @@ function __extend($view, $data = []) {
 }
 
 function __yield($name) {
-    $extend = $GLOBALS['view']['extend'] ?? false;
+    $extend = $GLOBALS['view']['is_extended'] ?? false;
     return ($extend) ? "{psy-$name-endpsy}" : '';
 }
 
